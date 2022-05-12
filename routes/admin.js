@@ -9,11 +9,10 @@ const router = express.Router();
 const products = [];
 
 router.get("/add-product", (req, res, next) => {
-  res.render("add-product", { docTitle: "Add Product" });
+  res.render("add-product", { docTitle: "Add Product", path: "/add-product" });
 });
 
 router.post("/add-product", (req, res, next) => {
-  console.log(req.body.productName);
   products.push({ title: req.body.productName });
   res.redirect("/");
 });
