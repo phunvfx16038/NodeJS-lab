@@ -5,7 +5,7 @@ const app = express();
 
 const adminRouter = require("./routes/admin");
 const shopRouter = require("./routes/shop");
-
+const error404 = require("./controller/404Error");
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -15,8 +15,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/admin", adminRouter.route);
 app.use(shopRouter);
 
-app.use((req, res, next) => {
-  res.status(404).render("404", { docTitle: "404 Error", path: "" });
-});
+app.use(error404.error404);
 
 app.listen(3000);
